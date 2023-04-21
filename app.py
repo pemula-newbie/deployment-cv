@@ -1,13 +1,14 @@
 '''
 	Contoh Deloyment untuk Domain Computer Vision (CV)
-	Orbit Future Academy - AI Mastery - KM Batch 3
+	Orbit Future Academy - AI Mastery - KM Batch 4
 	Tim Deployment
-	2022
+	2023
 '''
 
 # =[Modules dan Packages]========================
 
 from flask import Flask,render_template,request,jsonify
+from flask_ngrok import run_with_ngrok
 from werkzeug.utils import secure_filename
 import pandas as pd
 import numpy as np
@@ -28,6 +29,8 @@ app.config['UPLOAD_EXTENSIONS']  = ['.jpg','.JPG']
 app.config['UPLOAD_PATH']        = './static/images/uploads/'
 
 model = None
+
+run_with_ngrok(app)
 
 NUM_CLASSES = 10
 cifar10_classes = ["airplane", "automobile", "bird", "cat", "deer", 
@@ -102,8 +105,8 @@ if __name__ == '__main__':
 	model = make_model()
 	model.load_weights("model_cifar10_cnn_tf.h5")
 
-	# Run Flask di localhost 
-	app.run(host="localhost", port=5000, debug=True)
+	# Run Flask di Google Colab menggunakan ngrok
+	app.run()
 	
 	
 
