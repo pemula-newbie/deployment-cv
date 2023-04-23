@@ -30,8 +30,6 @@ app.config['UPLOAD_PATH']        = './static/images/uploads/'
 
 model = None
 
-run_with_ngrok(app)
-
 NUM_CLASSES = 10
 cifar10_classes = ["airplane", "automobile", "bird", "cat", "deer", 
                    "dog", "frog", "horse", "ship", "truck"]
@@ -106,6 +104,7 @@ if __name__ == '__main__':
 	model.load_weights("model_cifar10_cnn_tf.h5")
 
 	# Run Flask di Google Colab menggunakan ngrok
+	run_with_ngrok(app)
 	app.run()
 	
 	
